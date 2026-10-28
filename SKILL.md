@@ -36,10 +36,11 @@ Do not ask about things the file already answers. Wait for the reply, then proce
 
 ### 4. Generate
 1. Write the JSON to a temp file (not into the user's project unless asked).
-2. Run the helper (it checks the API is up, posts, saves the PDF, validates `%PDF`):
+2. Run the helper (it checks the API is up, posts, saves the PDF, validates `%PDF`). `scripts/` is in **this skill's directory**, not the user's project, so call it by its absolute path (e.g. `~/.commandcode/skills/invoice-generator/scripts/generate_invoice.sh`, `~/.claude/skills/...`, wherever this SKILL.md was loaded from) and keep the current directory unchanged:
    ```bash
-   scripts/generate_invoice.sh /tmp/invoice.json --logo /path/logo.png --out .
+   <skill-dir>/scripts/generate_invoice.sh /tmp/invoice.json --logo /path/logo.png --out .
    ```
+   The production API is open at `https://invoice-api.tyrolabs.dev`; no token or setup is needed unless `INVOICE_API_URL` points elsewhere.
    Omit `--logo` if none. The PDF is saved as `invoice-<number>.pdf` in `--out` (default: current directory; use the directory the user's file is in if sensible).
 3. If exit code 3: the API is unreachable. Check `curl -s $INVOICE_API_URL/health` once more; if it is still down, tell the user the server is not responding and stop. If the user runs the API themselves (source: https://github.com/hasinhayder/invoice-api, start with `./start.sh`, port 8120), ask them to start it and set `INVOICE_API_URL=http://127.0.0.1:8120`.
 4. If the API returns HTTP 422: the error JSON lists `loc`/`msg` per field. Fix what you can from the input; otherwise ask the user about those fields and retry.
