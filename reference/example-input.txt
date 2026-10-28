@@ -1,0 +1,13 @@
+Invoice for Globex Ltd
+
+From: Acme Studio, 1 Main St, Dhaka 1207. Email hi@acme.test
+To: Globex Ltd, 99 Long Road, London. VAT GB123
+
+Work done:
+- Website redesign, 1 x 2500
+- Hosting setup, 3 hours at 80 per hour
+- Logo pack, 1 x 450
+
+VAT 20%. 10% discount for repeat customer.
+Issued 27 Oct 2026, due in 30 days. Currency: USD.
+Pay by bank transfer: IBAN GB00 0000 0000. Thanks for your business!
