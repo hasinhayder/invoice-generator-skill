@@ -9,9 +9,9 @@ An agent skill that turns a plain-text file of invoice details into a finished P
 
 1. You keep invoice info in any text file, however messy (see `reference/example-input.txt`).
 2. The agent reads `SKILL.md`, maps the text to the API schema (`reference/schema.md`) and **asks you for missing information**, plus template and optional logo.
-3. It runs `scripts/generate_invoice.sh`, which posts to the API and downloads `invoice-<number>.pdf`.
+3. It runs `scripts/generate_invoice.py`, which posts to the API and downloads `invoice-<number>.pdf`.
 
-Requirements: `bash` and `curl`. No Python needed on your machine.
+Requirements: **Python 3.7 or newer** must already be installed (macOS, Linux or Windows). The script uses only the standard library, so there is nothing else to install.
 
 ## Install
 
@@ -66,23 +66,7 @@ done
 
 ## Windows
 
-The helper script (`scripts/generate_invoice.sh`) is a bash script that uses `curl`, `sed`, `mktemp` and `head`, so it needs a bash shell.
-
-| Environment | Status |
-|---|---|
-| WSL | Works as-is |
-| Git Bash (Git for Windows) | Works as-is. Claude Code on native Windows already requires Git for Windows |
-| Plain PowerShell / cmd | **Not supported yet.** Windows cannot run `.sh` files directly |
-
-Whether your agent gets a bash shell on Windows depends on the tool, so check that first. A PowerShell helper (`generate_invoice.ps1`, using the `curl.exe` that ships with Windows 10 and 11) is the planned fix; it has not been written or tested on Windows yet.
-
-If you are stuck without bash, the skill only needs one HTTP call. From PowerShell, use `curl.exe` (not `curl`, which is an alias for another command in Windows PowerShell 5.1):
-
-```powershell
-curl.exe -fS -o invoice.pdf -F "data=<invoice.json" -F "logo=@logo.png" https://invoice-api.tyrolabs.dev/invoices
-```
-
-Omit the `logo` part if you have no logo. This raw call is untested on Windows.
+The helper is a cross-platform Python script, so there is no shell dependency: it runs the same in PowerShell, cmd, Git Bash and WSL. Use `python` (or `py`) instead of `python3` on Windows. Python is the only requirement, and the skill does not install it for you.
 
 ## Usage
 
@@ -95,8 +79,8 @@ It will reply with anything it needs (missing dates, % vs fixed discount, templa
 ## Test it manually
 
 ```bash
-curl https://invoice-api.tyrolabs.dev/health
-scripts/generate_invoice.sh my-invoice.json --logo logo.png --out .
+python3 -c "import urllib.request as u; print(u.urlopen('https://invoice-api.tyrolabs.dev/health').read())"
+python3 scripts/generate_invoice.py my-invoice.json --logo logo.png --out .
 ```
 
 JSON format: `reference/schema.md`.
@@ -105,7 +89,7 @@ JSON format: `reference/schema.md`.
 
 ```
 SKILL.md                    agent instructions (the workflow)
-scripts/generate_invoice.sh API call + PDF download
+scripts/generate_invoice.py API call + PDF download (Python, stdlib only)
 reference/schema.md         field reference
 reference/example-input.txt messy sample input
 ```
