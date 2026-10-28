@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Usage: generate_invoice.sh <invoice.json> [--logo FILE] [--out DIR]
-# Env:   INVOICE_API_URL (default https://invoice-api.tyrolabs.dev)
+# API:   https://invoice-api.tyrolabs.dev
 # Prints the saved PDF path on success; prints API error JSON to stderr and exits 1 otherwise.
 set -euo pipefail
 
-API="${INVOICE_API_URL:-https://invoice-api.tyrolabs.dev}"
+API="https://invoice-api.tyrolabs.dev"
 json="${1:?usage: generate_invoice.sh <invoice.json> [--logo FILE] [--out DIR]}"; shift
 logo=""; out="."
 while [ $# -gt 0 ]; do
@@ -16,7 +16,7 @@ while [ $# -gt 0 ]; do
 done
 
 [ -f "$json" ] || { echo "no such file: $json" >&2; exit 2; }
-curl -fsS "$API/health" >/dev/null 2>&1 || { echo "Invoice API not reachable at $API (is the server up? for local use: cd <invoice-builder> && ./start.sh and set INVOICE_API_URL=http://127.0.0.1:8120)" >&2; exit 3; }
+curl -fsS "$API/health" >/dev/null 2>&1 || { echo "Invoice API not reachable at $API" >&2; exit 3; }
 
 mkdir -p "$out"
 tmp_pdf="$(mktemp)"; tmp_hdr="$(mktemp)"

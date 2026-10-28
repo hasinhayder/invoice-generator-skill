@@ -3,7 +3,6 @@
 An agent skill that turns a plain-text file of invoice details into a finished PDF invoice. The agent organizes the information, asks you for anything missing, then calls the hosted **Invoice API** and saves the PDF.
 
 - API (hosted): https://invoice-api.tyrolabs.dev
-- API source / self-hosting: https://github.com/hasinhayder/invoice-api
 - Six templates: classic, modern, minimal, bold, elegant, compact. Optional logo (PNG/JPEG).
 
 ## What it does
@@ -72,14 +71,6 @@ Ask your agent, for example:
 > Create an invoice from `~/invoices/globex-october.txt`
 
 It will reply with anything it needs (missing dates, % vs fixed discount, template choice, logo path) and then give you the path to the PDF.
-
-## Configuration
-
-| Variable | Default | Purpose |
-|---|---|---|
-| `INVOICE_API_URL` | `https://invoice-api.tyrolabs.dev` | Point at your own deployment, e.g. `http://127.0.0.1:8120` |
-
-If the API sits behind basic auth, include the credentials in the URL: `https://user:pass@your-host`.
 
 ## Test it manually
 
