@@ -64,6 +64,26 @@ done
 
 > Skill locations and discovery rules change between releases. Claude Code and Command Code paths are confirmed; for OpenCode and Codex check the tool's own skills documentation if the skill does not show up.
 
+## Windows
+
+The helper script (`scripts/generate_invoice.sh`) is a bash script that uses `curl`, `sed`, `mktemp` and `head`, so it needs a bash shell.
+
+| Environment | Status |
+|---|---|
+| WSL | Works as-is |
+| Git Bash (Git for Windows) | Works as-is. Claude Code on native Windows already requires Git for Windows |
+| Plain PowerShell / cmd | **Not supported yet.** Windows cannot run `.sh` files directly |
+
+Whether your agent gets a bash shell on Windows depends on the tool, so check that first. A PowerShell helper (`generate_invoice.ps1`, using the `curl.exe` that ships with Windows 10 and 11) is the planned fix; it has not been written or tested on Windows yet.
+
+If you are stuck without bash, the skill only needs one HTTP call. From PowerShell, use `curl.exe` (not `curl`, which is an alias for another command in Windows PowerShell 5.1):
+
+```powershell
+curl.exe -fS -o invoice.pdf -F "data=<invoice.json" -F "logo=@logo.png" https://invoice-api.tyrolabs.dev/invoices
+```
+
+Omit the `logo` part if you have no logo. This raw call is untested on Windows.
+
 ## Usage
 
 Ask your agent, for example:
