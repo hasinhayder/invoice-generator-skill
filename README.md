@@ -75,21 +75,3 @@ Ask your agent, for example:
 > Create an invoice from `~/invoices/globex-october.txt`
 
 It will reply with anything it needs (missing dates, % vs fixed discount, template choice, logo path) and then give you the path to the PDF.
-
-## Test it manually
-
-```bash
-python3 -c "import urllib.request as u; print(u.urlopen('https://invoice-api.tyrolabs.dev/health').read())"
-python3 scripts/generate_invoice.py my-invoice.json --logo logo.png --out .
-```
-
-JSON format: `reference/schema.md`.
-
-## Layout
-
-```
-SKILL.md                    agent instructions (the workflow)
-scripts/generate_invoice.py API call + PDF download (Python, stdlib only)
-reference/schema.md         field reference
-reference/example-input.txt messy sample input
-```
