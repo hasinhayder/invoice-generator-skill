@@ -3,7 +3,7 @@
 An agent skill that turns a plain-text file of invoice details into a finished PDF invoice. The agent organizes the information, asks you for anything missing, then calls the hosted **Invoice API** and saves the PDF.
 
 - API (hosted): https://invoice-api.tyrolabs.dev
-- Nine templates: professional (default), studio, sidebar, classic, modern, minimal, bold, elegant, compact. Optional logo (PNG/JPEG).
+- Twelve templates: professional (default), studio, sidebar, noir, swiss, ledger, classic, modern, minimal, bold, elegant, compact. Optional logo (PNG/JPEG).
 
 ## What it does
 

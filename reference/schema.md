@@ -4,7 +4,7 @@
 
 | Field | Req | Notes |
 |---|---|---|
-| `template` | no | `professional` (default), `studio`, `sidebar`, `classic`, `modern`, `minimal`, `bold`, `elegant`, `compact` |
+| `template` | no | `professional` (default), `studio`, `sidebar`, `noir`, `swiss`, `ledger`, `classic`, `modern`, `minimal`, `bold`, `elegant`, `compact` |
 | `invoice_number` | no | auto-generated if omitted |
 | `currency` | no | symbol or code, default `$`. Use `USD`, `EUR`, `€`, `£`. Non-Latin symbols (₹, ৳) are rendered as codes (INR, BDT); prefer codes |
 | `biller` | yes | `{name, address, email?, phone?, tax_id?}`; address may contain `\n` |

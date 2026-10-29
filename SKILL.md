@@ -29,7 +29,7 @@ Map the text to the fields in `reference/schema.md`:
 Required: biller name+address, client name+address, ≥1 item with quantity and price, issue date, due date.
 Also confirm, in the **same single message**:
 - any required field that is missing or ambiguous (e.g. unclear whether a number is % or an amount)
-- the **template** (offer the list from `GET $API/templates`: professional (default), studio, sidebar, classic, modern, minimal, bold, elegant, compact; use professional if the user has no preference)
+- the **template** (offer the list from `GET $API/templates`: professional (default), studio, sidebar, noir, swiss, ledger, classic, modern, minimal, bold, elegant, compact; use professional if the user has no preference)
 - whether they want a **logo** (ask for a PNG/JPEG path; skip if they say no)
 
 Do not ask about things the file already answers. Wait for the reply, then proceed.
